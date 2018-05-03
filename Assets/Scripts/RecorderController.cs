@@ -1,0 +1,37 @@
+﻿using UnityEngine;
+using UTJ.FrameCapturer;
+
+public class RecorderController : MonoBehaviour
+{
+    public Camera RenderCamera;
+    private MovieRecorder recorder;
+
+    void Start()
+    {
+        recorder = RenderCamera.GetComponent<MovieRecorder>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            StartVideoCapture();
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            StopVideoCapture();
+        }
+    }
+
+    void StartVideoCapture()
+    {
+        var success = recorder.BeginRecording();
+        Debug.Log(string.Format("BeginRecording -> {0}", success));
+    }
+
+    void StopVideoCapture()
+    {
+        recorder.EndRecording();
+        Debug.Log("EndRecording");
+    }
+}
