@@ -5,6 +5,7 @@ public class RecorderController : MonoBehaviour
 {
     public Camera RenderCamera;
     private MovieRecorder recorder;
+    private bool isRecord = false;
 
     void Start()
     {
@@ -13,13 +14,19 @@ public class RecorderController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartVideoCapture();
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            StopVideoCapture();
+            isRecord = !isRecord;
+
+            if (isRecord)
+            {
+                StartVideoCapture();
+            }
+
+            if (!isRecord)
+            {
+                StopVideoCapture();
+            }
         }
     }
 
